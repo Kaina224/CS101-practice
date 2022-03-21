@@ -160,4 +160,52 @@ public class SortingTest{
         int[] actualData = sorter.getData();
         assertArraySorted(actualData);
     }
+
+    @Test
+    public void insertionSort_oneElement_sortedCorrectly(){
+        int[] expectedData = {1};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.INSERTION);
+
+        int[] actualData = sorter.getData();
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void insertionSort_twoElements_sortedCorrectly(){
+        int[] expectedData = {2,1};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.INSERTION);
+
+        int[] actualData = sorter.getData();
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void insertionSort_multipleElements_sortedCorrectly(){
+        int[] data = {9, 4, 2, 8, 1, 3, 7, 6, 5};
+        Sorting sorter = new Sorting(data);
+        sorter.sort(SortType.INSERTION);
+
+        int[] expectedData = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] actualData = sorter.getData();
+
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void insertionSort_multipleRandomElements_sortedCorrectly(){
+        Random random = new Random();
+        List<Integer> randomData = new ArrayList<Integer>();
+        int dataLength = random.nextInt(10);
+        for (int i = 0; i < dataLength; i++){
+            randomData.add(random.nextInt(10));
+        }
+        int[] data = randomData.stream().mapToInt(i -> i).toArray();
+        Sorting sorter = new Sorting(data);
+        sorter.sort(SortType.INSERTION);
+
+        int[] actualData = sorter.getData();
+        assertArraySorted(actualData);
+    }
 }

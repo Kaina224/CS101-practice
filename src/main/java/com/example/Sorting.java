@@ -79,7 +79,15 @@ public class Sorting {
     }
 
     private void insertionSort(){
-
+        for (int i = 0; i < data.length; i++){
+            for (int j = i; j > 0; j--){
+                if(data[j] > data[j - 1]){
+                    int temp = data[j];
+                    data[j] = data[j-1];
+                    data[j-1] = temp;
+                }
+            }
+        }
     }
 
     private void quickSort(int[] data, int beginningIndex, int endIndex){
