@@ -12,6 +12,14 @@ import org.junit.jupiter.api.Assertions.*;
 
 public class SortingTest{
     @Test
+    public void bubbleSort_noElements_expectEmptyArray(){
+        int[] expectedData = {};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.BUBBLE);
+        assertArrayEquals(expectedData, sorter.getData());
+    }
+
+    @Test
     public void bubbleSort_oneElement_sortedCorrectly(){
         int[] expectedData = {1};
         Sorting sorter = new Sorting(expectedData);
@@ -66,6 +74,14 @@ public class SortingTest{
     }
 
     @Test
+    public void mergeSort_noElements_expectEmptyArray(){
+        int[] expectedData = {};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.MERGE);
+        assertArrayEquals(expectedData, sorter.getData());
+    }
+
+    @Test
     public void mergeSort_oneElement_sortedCorrectly(){
         int[] expectedData = {1};
         Sorting sorter = new Sorting(expectedData);
@@ -114,6 +130,14 @@ public class SortingTest{
     }
 
     @Test
+    public void quickSort_noElements_expectEmptyArray(){
+        int[] expectedData = {};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.QUICK);
+        assertArrayEquals(expectedData, sorter.getData());
+    }
+
+    @Test
     public void quickSort_oneElement_sortedCorrectly(){
         int[] expectedData = {1};
         Sorting sorter = new Sorting(expectedData);
@@ -159,6 +183,14 @@ public class SortingTest{
 
         int[] actualData = sorter.getData();
         assertArraySorted(actualData);
+    }
+
+    @Test
+    public void insertionSort_noElements_expectEmptyArray(){
+        int[] expectedData = {};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.BUBBLE);
+        assertArrayEquals(expectedData, sorter.getData());
     }
 
     @Test
