@@ -18,7 +18,7 @@ public class Sorting {
             case INSERTION:
                 insertionSort();
             case QUICK:
-                quickSort();
+                quickSort(this.data, 0, data.length - 1);
         }
     }
 
@@ -82,8 +82,76 @@ public class Sorting {
 
     }
 
-    private void quickSort(){
+    private void quickSort(int[] data, int beginningIndex, int endIndex){
+        if (beginningIndex < endIndex){
+            int partitionIndex = partition(data, beginningIndex, endIndex);
+            quickSort(data, beginningIndex, partitionIndex - 1);
+            quickSort(data, partitionIndex + 1, endIndex);
+        }
+    }
 
+    private int partition(int[] data, int beginningIndex, int endIndex){
+        int middleIndex = beginningIndex + (endIndex - beginningIndex)/2;
+        if (middleIndex != beginningIndex && middleIndex != endIndex){
+            findMedian(data, beginningIndex, middleIndex, endIndex);
+        }
+        int pivot = data[middleIndex];
+        int i = beginningIndex;
+        int j = endIndex;
+        while(j > i){
+            if (data[i] > data[j]){
+                int temp = data[i];
+                data[i] = data[j];
+                data[j] = temp;
+            }
+            if (data[i] <= pivot){
+                i++;
+            }
+            if (data[j] > pivot){
+                j--;
+            }
+        }
+        return j;
+    }
+
+    private void findMedian(int[] data, 
+                           int beginningIndex, 
+                           int middleIndex, 
+                           int endIndex){
+        int low = data[beginningIndex];
+        int medium = data[middleIndex];
+        int high = data[endIndex];
+        
+        if ((low <= medium && low >= high)){
+            data[beginningIndex] = high;
+            data[middleIndex] = low;
+            data[endIndex] = medium;
+        }
+        else if((low >= medium && low <= high)){
+            data[beginningIndex] = medium;
+            data[middleIndex] = low;
+            data[endIndex] = high;
+        }
+        else if ((medium <= low && medium >= high)){
+            data[beginningIndex] = high;
+            data[middleIndex] = medium;
+            data[endIndex] = low;
+        }
+        else if ((medium >= low && medium <= high)){
+            data[beginningIndex] = low;
+            data[middleIndex] = medium;
+            data[endIndex] = high;
+        }
+        else if (high >= low && high <= medium){
+            data[beginningIndex] = low;
+            data[middleIndex] = high;
+            data[endIndex] = medium;
+        }
+        else{
+            data[beginningIndex] = medium;
+            data[middleIndex] = high;
+            data[endIndex] = low;
+        }
     }
 
     public int[] getData(){

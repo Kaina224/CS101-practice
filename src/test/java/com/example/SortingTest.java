@@ -77,7 +77,7 @@ public class SortingTest{
 
     @Test
     public void mergeSort_twoElements_SortedCorrectly(){
-        int[] expectedData = {1,2};
+        int[] expectedData = {2,1};
         Sorting sorter = new Sorting(expectedData);
         sorter.sort(SortType.MERGE);
 
@@ -86,7 +86,7 @@ public class SortingTest{
     }
 
     @Test
-    public void mergeSort_oddLengthedData_sortedCorrectly(){
+    public void mergeSort_multipleElements_sortedCorrectly(){
         int[] data = {9, 4, 2, 8, 1, 3, 7, 6, 5};
         Sorting sorter = new Sorting(data);
         sorter.sort(SortType.MERGE);
@@ -108,6 +108,54 @@ public class SortingTest{
         int[] data = randomData.stream().mapToInt(i -> i).toArray();
         Sorting sorter = new Sorting(data);
         sorter.sort(SortType.MERGE);
+
+        int[] actualData = sorter.getData();
+        assertArraySorted(actualData);
+    }
+
+    @Test
+    public void quickSort_oneElement_sortedCorrectly(){
+        int[] expectedData = {1};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.QUICK);
+
+        int[] actualData = sorter.getData();
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void quickSort_twoElements_sortedCorrectly(){
+        int[] expectedData = {2,1};
+        Sorting sorter = new Sorting(expectedData);
+        sorter.sort(SortType.QUICK);
+
+        int[] actualData = sorter.getData();
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void quickSort_multipleElements_sortedCorrectly(){
+        int[] data = {9, 4, 2, 8, 1, 3, 7, 6, 5};
+        Sorting sorter = new Sorting(data);
+        sorter.sort(SortType.QUICK);
+
+        int[] expectedData = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] actualData = sorter.getData();
+
+        assertArrayEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void quickSort_multipleRandomElements_sortedCorrectly(){
+        Random random = new Random();
+        List<Integer> randomData = new ArrayList<Integer>();
+        int dataLength = random.nextInt(10);
+        for (int i = 0; i < dataLength; i++){
+            randomData.add(random.nextInt(10));
+        }
+        int[] data = randomData.stream().mapToInt(i -> i).toArray();
+        Sorting sorter = new Sorting(data);
+        sorter.sort(SortType.QUICK);
 
         int[] actualData = sorter.getData();
         assertArraySorted(actualData);
