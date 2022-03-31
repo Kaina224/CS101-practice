@@ -2,6 +2,7 @@
 Relearning essentials along with implementing testing to catch back up to speed. 
 
 Done: Singly Linked Linked List, Four Basic Sorting Algorithms
+
 TODO: Stacks, queues, trees
 
 **Sorting Algorithims:**
