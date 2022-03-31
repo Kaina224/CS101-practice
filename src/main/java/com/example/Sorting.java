@@ -50,6 +50,20 @@ public class Sorting {
         int[] leftArray = Arrays.copyOfRange(data, beginningIndex, beginningIndex + subarraySizeOne);
         int[] rightArray = Arrays.copyOfRange(data, middleIndex, middleIndex + subarraySizeTwo);
 
+        mergeSubArrays(beginningIndex, 
+                       leftArray, 
+                       rightArray, 
+                       data, 
+                       subarraySizeOne, 
+                       subarraySizeTwo);
+    }
+
+    private void mergeSubArrays(int beginningIndex,
+                                int[] leftArray, 
+                                int[] rightArray, 
+                                int[] data,
+                                int subarraySizeOne, 
+                                int subarraySizeTwo){
         int i = 0, j = 0;
         int k = beginningIndex;
 
