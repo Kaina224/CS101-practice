@@ -64,6 +64,21 @@ public class LinkedList {
         }
     }
 
+    int getAndRemoveHead(){
+        if (head.isPresent()){
+            Optional<Node> oldHead = head;
+            if(head.get().next.isPresent()){
+                head = head.get().next;
+            }
+            else{
+                head = Optional.empty();
+            }
+            return oldHead.get().getNumber();
+        }
+        else{
+            return -1;
+        }
+    }
     public List<Integer> getNumbers(){
         List<Integer> numbers = new ArrayList<Integer>();
         Optional<Node> current = head;
