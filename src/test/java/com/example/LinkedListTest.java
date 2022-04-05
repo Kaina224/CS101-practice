@@ -36,7 +36,7 @@ public class LinkedListTest {
 
     @Test
     public void assertLinkedListOfMultipleValuesCreatedProperly(){
-        int[] expectedArray = {1,2,3, 4, 5};
+        int[] expectedArray = {1,2,3,4,5};
         LinkedList list = new LinkedList(expectedArray);
         List<Integer> actualList = list.getNumbers();
         int[] actualArray = actualList.stream().mapToInt(i -> i).toArray();
@@ -50,9 +50,8 @@ public class LinkedListTest {
         int expectedNumber = 7;
         list.insertAsHead(expectedNumber);
 
-        List<Integer> actualList = list.getNumbers();
-        int[] actualArray = actualList.stream().mapToInt(i -> i).toArray();
-        assertEquals(Integer.valueOf(expectedNumber), Integer.valueOf(actualArray[0]));
+        int actualNumber = list.getNodeNumber(list.getHead());
+        assertEquals(expectedNumber, actualNumber);
     }
 
     @Test
@@ -60,11 +59,9 @@ public class LinkedListTest {
         int[] listData = {1,2,3,4,5};
         LinkedList list = new LinkedList(listData);
         int expectedNumber = 7;
-        list.insertAtEnd(expectedNumber);
+        list.insertAsTail(expectedNumber);
 
-        List<Integer> actualList = list.getNumbers();
-        int[] actualArray = actualList.stream().mapToInt(i -> i).toArray();
-        assertEquals(Integer.valueOf(expectedNumber), 
-                     Integer.valueOf(actualArray[actualArray.length - 1]));
+        int actualNumber = list.getNodeNumber(list.getTail());
+        assertEquals(expectedNumber, actualNumber);
     }
 }

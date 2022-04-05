@@ -106,17 +106,24 @@ public class Sorting {
 
     private void quickSort(int[] data, int beginningIndex, int endIndex){
         if (beginningIndex < endIndex){
-            int partitionIndex = partition(data, beginningIndex, endIndex);
+            int partitionIndex = partitionAndSort(data, beginningIndex, endIndex);
             quickSort(data, beginningIndex, partitionIndex - 1);
             quickSort(data, partitionIndex + 1, endIndex);
         }
     }
 
-    private int partition(int[] data, int beginningIndex, int endIndex){
+    private int partitionAndSort(int[] data, int beginningIndex, int endIndex){
         int middleIndex = beginningIndex + (endIndex - beginningIndex)/2;
         if (middleIndex != beginningIndex && middleIndex != endIndex){
             findMedian(data, beginningIndex, middleIndex, endIndex);
         }
+        return sortPartitionedArrays(data, beginningIndex, middleIndex, endIndex);
+    }
+
+    private int sortPartitionedArrays(int[] data, 
+                                      int beginningIndex,
+                                      int middleIndex,
+                                      int endIndex){
         int pivot = data[middleIndex];
         int i = beginningIndex;
         int j = endIndex;

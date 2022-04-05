@@ -6,21 +6,26 @@ import java.util.Optional;
 
 public class LinkedList {
     private Optional<Node> head;
+    private Optional<Node> tail;
 
     LinkedList(){
         head = Optional.empty();
+        tail = Optional.empty();
     }
 
     LinkedList(int number){
         head = Optional.of(new Node(number));
+        tail = head;
     }
 
     LinkedList(int[] numbers){
         if (numbers.length == 0){
             head = Optional.empty();
+            tail = head;
         }
         else if(numbers.length == 1){
             head = Optional.of(new Node(numbers[0]));
+            tail = head;
         }
 
         else{
@@ -32,10 +37,11 @@ public class LinkedList {
                 current.next = Optional.of(next);
                 current = next;
             }
+            tail = Optional.of(current);
         }
     }
 
-    public void insertAtEnd(int number){
+    public void insertAsTail(int number){
         if(head.isPresent()) {
             Node next = new Node(number);
             Node current = head.get();
@@ -43,6 +49,7 @@ public class LinkedList {
                 current = current.next.get(); 
             }
             current.next = Optional.of(next);
+            tail = Optional.of(next);
         }
     }
 
@@ -66,6 +73,23 @@ public class LinkedList {
             current = currentNode.next;
         }
         return numbers;
+    }
+
+    public Optional<Node> getHead(){
+        return head;
+    }
+
+    public Optional<Node> getTail(){
+        return tail;
+    }
+
+    public int getNodeNumber(Optional<Node> node){
+        if (node.isPresent()){
+            return node.get().getNumber();
+        }
+        else{
+            return -1;
+        }
     }
 
     private class Node{
