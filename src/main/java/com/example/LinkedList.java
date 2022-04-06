@@ -32,9 +32,11 @@ public class LinkedList {
             head = Optional.of(new Node(numbers[0]));
             Node current = new Node(numbers[1]);
             head.get().next = Optional.of(current);
+            current.previous = head;
             for (int i = 2; i < numbers.length; i++){
                 Node next = new Node(numbers[i]);
                 current.next = Optional.of(next);
+                next.previous = Optional.of(current);
                 current = next;
             }
             tail = Optional.of(current);
@@ -72,6 +74,7 @@ public class LinkedList {
             }
             else{
                 head = Optional.empty();
+                tail = Optional.empty();
             }
             return oldHead.get().getNumber();
         }
@@ -79,6 +82,24 @@ public class LinkedList {
             return -1;
         }
     }
+
+    int getAndRemoveTail(){
+        if (tail.isPresent()){
+            Optional<Node> oldTail = tail;
+            if(tail.get().previous.isPresent()){
+                tail = tail.get().previous;
+            }
+            else{
+                head = Optional.empty();
+                tail = Optional.empty();
+            }
+            return oldTail.get().getNumber();
+        }
+        else{
+            return -1;
+        }
+    }
+
     public List<Integer> getNumbers(){
         List<Integer> numbers = new ArrayList<Integer>();
         Optional<Node> current = head;
@@ -110,10 +131,12 @@ public class LinkedList {
     private class Node{
         private int number;
         Optional<Node> next;
+        Optional<Node> previous;
 
         public Node(int number){
             this.number = number;
             this.next = Optional.empty();
+            this.previous = Optional.empty();
         }
 
         public int getNumber(){

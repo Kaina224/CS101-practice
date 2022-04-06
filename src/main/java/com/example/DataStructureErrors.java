@@ -1,7 +1,8 @@
 package com.example;
 
 public enum DataStructureErrors {
-    POPPING_EMPTY_STACK("Cannot pop an empty stack.");
+    POPPING_EMPTY_STACK("Cannot pop an empty stack."),
+    DEQUEUEING_EMPTY_QUEUE("Cannot dequeue and empty queue.");
 
     private String value;
 
